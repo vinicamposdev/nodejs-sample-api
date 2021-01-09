@@ -25,7 +25,7 @@
 
 
 ## :memo: License
-This project is under the MIT license. See the [LICENSE](https://github.com/vmoc-campos/original-processo-seletivo/blob/master/LICENSE) for more information.
+This project is under the MIT license. See the [LICENSE](https://github.com/vmoc-campos/nodejs-sample-api/blob/master/LICENSE) for more information.
 
 ---
 
