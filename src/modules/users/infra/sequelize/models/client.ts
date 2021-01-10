@@ -1,72 +1,52 @@
-import { Sequelize, Model, DataTypes } from 'sequelize';
+import {
+  Table,
+  Column,
+  Model,
+  UpdatedAt,
+  CreatedAt,
+  PrimaryKey,
+  IsUUID,
+  DataType,
+  Default,
+} from 'sequelize-typescript';
 
-const sequelize = new Sequelize(
-  'postgres://postgres:docker@localhost:5433/postgres',
-);
-
+@Table
 class Client extends Model {
-  public id!: string; // Note that the `null assertion` `!` is required in strict mode.
+  @IsUUID(4)
+  @PrimaryKey
+  @Default(DataType.UUIDV4)
+  @Column
+  id: string;
 
-  public email!: string;
+  @Column
+  cpf: string;
 
-  public cpf!: string;
+  @Column
+  email: string;
 
-  public postal_code!: string;
+  @Column
+  postal_code: string;
 
-  public city!: string;
+  @Column
+  city: string;
 
-  public neighborhood!: string | null;
+  @Column
+  neighborhood: string;
 
-  public street!: string;
+  @Column
+  street: string;
 
-  public street_number!: string | null;
+  @Column
+  street_number: string;
 
-  public complement!: string | null;
+  @Column
+  complement: string;
+
+  @CreatedAt
+  public readonly created_at: Date;
+
+  @UpdatedAt
+  public readonly updated_at: Date;
 }
-
-Client.init(
-  {
-    id: {
-      type: DataTypes.STRING(128),
-      primaryKey: true,
-    },
-    cpf: {
-      type: new DataTypes.STRING(128),
-      allowNull: false,
-    },
-    email: {
-      type: new DataTypes.STRING(128),
-      allowNull: false,
-    },
-    postal_code: {
-      type: new DataTypes.INTEGER(),
-      allowNull: true,
-    },
-    city: {
-      type: new DataTypes.STRING(128),
-      allowNull: true,
-    },
-    neighborhood: {
-      type: new DataTypes.STRING(128),
-      allowNull: true,
-    },
-    street: {
-      type: new DataTypes.STRING(128),
-      allowNull: true,
-    },
-    street_number: {
-      type: new DataTypes.STRING(128),
-      allowNull: true,
-    },
-    complement: {
-      type: new DataTypes.STRING(128),
-      allowNull: true,
-    },
-  },
-  {
-    tableName: 'Clients',
-    sequelize,
-  },
-);
 
 export default Client;

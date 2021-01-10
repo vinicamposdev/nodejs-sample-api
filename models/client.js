@@ -19,7 +19,7 @@ module.exports = (sequelize, DataTypes) => {
     email: DataTypes.STRING,
     postal_code: DataTypes.INTEGER,
     city: DataTypes.STRING,
-    neightborhood: DataTypes.STRING,
+    neighborhood: DataTypes.STRING,
     street: DataTypes.STRING,
     street_number: DataTypes.STRING,
     complement: DataTypes.STRING
