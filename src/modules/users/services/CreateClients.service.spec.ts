@@ -4,6 +4,8 @@ import FakeClientsRepository from '../repositories/fakes/ClientsRepository.fake'
 import FakeAddressProvider from '../providers/AddressProvider/fakes/FakeAddressProvider';
 import CreateClientService from './CreateClients.service';
 
+jest.mock('../infra/sequelize/models/client.ts');
+
 const userDataMock = {
   email: 'test',
   cpf: 'test',
