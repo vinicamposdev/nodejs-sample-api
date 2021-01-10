@@ -1,13 +1,16 @@
 import { Router } from 'express';
+import User from '@shared/infra/sequelize/models/client';
 
 const clientsRouter = Router();
 
-clientsRouter.get('/', (req, res) => {
-  res.send('Client search');
+clientsRouter.get('/', async (req, res) => {
+  const foundUser = await User.findAll();
+
+  res.json(foundUser);
 });
 
-clientsRouter.post('/', (req, res) => {
-  res.send('Client post');
+clientsRouter.post('/', async (req, res) => {
+  res.json('Client post');
 });
 
 const routes = Router();
