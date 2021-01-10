@@ -26,4 +26,14 @@ clientsRouter.post(
   clientController.create,
 );
 
+clientsRouter.get(
+  '/',
+  celebrate({
+    [Segments.QUERY]: {
+      email: Joi.string().email().required(),
+    },
+  }),
+  clientController.read,
+);
+
 export default clientsRouter;

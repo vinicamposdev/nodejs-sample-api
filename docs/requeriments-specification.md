@@ -4,7 +4,7 @@ Nesta se seção, será especificado as funcionalidades do sistema.
 Manter Clientes com suas informações básicas.
 
 ## Requisitos Funcionais
-	-[ ] Busca de cliente por email;
+	-[X] Busca de cliente por email;
 	-[X] Inclusão de cliente;
 
 ## Requisitos Não Funcionais
