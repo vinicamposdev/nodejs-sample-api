@@ -26,8 +26,8 @@
 ## :computer: Como rodar
 
 ### Instalação
-Precisa do nodejs instalado, recomenda-se a versão 12.x. O tutorial do site oficial pode ser encontrado [aqui](https://nodejs.org/en/download/package-manager/)
-
+Precisa do nodejs instalado, recomenda-se a versão 12.x. O tutorial do site oficial pode ser encontrado [aqui](https://nodejs.org/en/download/package-manager/).
+Após isso rode o comando para instalar as dependencias necessárias ao projeto:
 ```shell
 npm install
 ```
