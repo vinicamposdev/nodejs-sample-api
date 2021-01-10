@@ -1,8 +1,13 @@
 import 'reflect-metadata';
+import 'dotenv/config';
 
 import express, { Request, Response, NextFunction } from 'express';
 import cors from 'cors';
+import { errors } from 'celebrate';
+
 import 'express-async-errors';
+
+import '@shared/container';
 
 import AppError from '@shared/errors/AppErrors';
 
@@ -20,6 +25,8 @@ app.use((req, res, next) => {
 
 // Express routes and
 app.use(routes);
+
+app.use(errors());
 
 // Global Handling Application Error
 // eslint-disable-next-line @typescript-eslint/no-unused-vars

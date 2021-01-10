@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
-    "target": "es5",
+    "skipLibCheck": true,
+    "target": "es6",
     "module": "commonjs",
     "allowJs": true,
     "outDir": "./dist",
@@ -9,6 +10,7 @@
     "strictPropertyInitialization": false,
     "baseUrl": ".",
     "paths": {
+      "@modules/*": ["./src/modules/*"],
       "@shared/*": ["./src/shared/*"]
     },
     "noImplicitAny": false,

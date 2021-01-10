@@ -26,11 +26,32 @@
 ## :computer: Como rodar
 
 ### Instalação
-Precisa do nodejs instalado, recomenda-se a versão 12.x. O tutorial do site oficial pode ser encontrado [aqui](https://nodejs.org/en/download/package-manager/)
+Precisa do nodejs instalado, recomenda-se a versão 12.x. O tutorial do site oficial pode ser encontrado [aqui](https://nodejs.org/en/download/package-manager/).
+É necessário o PostgresSQL também, onde a instalação pode ser enctontrada [aqui](https://www.postgresql.org/docs/9.3/tutorial-install.html).
 
+[Alternativa:] Se a instalação do PostgresSql não for possível, pode usar o docker para rodar um container Postgres (se estiver com docker instalado na máquina, o que pode ser visto [aqui](https://docs.docker.com/engine/install)). E para rodar o container, basta executar (verifique se a porta 5432 está liberada):
+```shell
+docker run --name ps-database -e POSTGRES_PASSWORD=postgres -p 5432:5432 -d postgres
+docker start ps-database
+```
+
+Após isso rode o comando para instalar as dependencias necessárias ao projeto:
 ```shell
 npm install
 ```
+Para finalizar a configuração do Postgres é necessário colocar as credenciais no arquivo '.env' (existe um exemplo no arquivo .env.example)
+
+Na variável 'DATABASE_URI', com o formato padrão?
+```shell
+<driver>://<user>:<password>@<host>:<port>/<database_name>
+```
+### Testes
+
+Para executar os testes dos services, execute o comando:
+```shell
+npm run test
+```
+
 ### Execução
 
 Para executar o servidor no ambiente de desenvolvimento, execute o comando:
@@ -53,6 +74,20 @@ Para consultar um clientes
 ```shell
 curl -X POST http://localhost:3333/clients
 ```
+
+## Demonstração
+
+Open Api Mock server:
+
+```shell
+https://virtserver.swaggerhub.com/vmo-campos/nodejs-sample-api/1.0.0
+```
+
+Deployed Heroku endpoint:
+```shell
+https://nodejs-sample-api-vmo-campos.herokuapp.com/
+```
+
 ## :memo: License
 This project is under the MIT license. See the [LICENSE](https://github.com/vmoc-campos/nodejs-sample-api/blob/master/LICENSE) for more information.
 

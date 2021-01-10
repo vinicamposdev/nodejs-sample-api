@@ -1,14 +1,6 @@
 import { Router } from 'express';
 
-const clientsRouter = Router();
-
-clientsRouter.get('/', (req, res) => {
-  res.send('Client search');
-});
-
-clientsRouter.post('/', (req, res) => {
-  res.send('Client post');
-});
+import clientsRouter from '../../../../modules/users/infra/http/routes/clients.routes';
 
 const routes = Router();
 

@@ -19,7 +19,7 @@
     }
   ],
   "paths": {
-    "/client": {
+    "/clients": {
       "get": {
         "tags": [
           "search"
@@ -48,10 +48,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/clientDTO"
-                  }
+                  "$ref": "#/components/schemas/clientDTO"
                 }
               }
             }
@@ -73,7 +70,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/clientCreationDTO"
+                "$ref": "#/components/schemas/clientDTO"
               }
             }
           }
@@ -101,28 +98,6 @@
   },
   "components": {
     "schemas": {
-      "clientCreationDTO": {
-        "required": [
-          "address",
-          "cpf",
-          "email"
-        ],
-        "type": "object",
-        "properties": {
-          "cpf": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "email": {
-            "type": "string",
-            "format": "email",
-            "example": "example@example.com"
-          },
-          "address": {
-            "$ref": "#/components/schemas/Address"
-          }
-        }
-      },
       "clientDTO": {
         "required": [
           "address",
@@ -153,11 +128,11 @@
       },
       "Address": {
         "required": [
-          "cep"
+          "postal_code"
         ],
         "type": "object",
         "properties": {
-          "cep": {
+          "postal_code": {
             "type": "string",
             "example": "12345678"
           },

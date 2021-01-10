@@ -5,3 +5,9 @@ package.lock.json
 
 # Typescript Build
 dist
+
+# Test dependencies
+coverage
+
+# Env Variables
+.env
