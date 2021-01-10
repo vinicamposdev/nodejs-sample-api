@@ -4,7 +4,7 @@ const sequelize = new Sequelize(
   'postgres://postgres:docker@localhost:5433/postgres',
 );
 
-class User extends Model {
+class Client extends Model {
   public id!: string; // Note that the `null assertion` `!` is required in strict mode.
 
   public cpf!: string;
@@ -14,7 +14,7 @@ class User extends Model {
   public email!: string;
 }
 
-User.init(
+Client.init(
   {
     id: {
       type: DataTypes.STRING(128),
@@ -39,4 +39,4 @@ User.init(
   },
 );
 
-export default User;
+export default Client;

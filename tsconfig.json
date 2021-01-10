@@ -9,6 +9,7 @@
     "strictPropertyInitialization": false,
     "baseUrl": ".",
     "paths": {
+      "@modules/*": ["./src/modules/*"],
       "@shared/*": ["./src/shared/*"]
     },
     "noImplicitAny": false,
