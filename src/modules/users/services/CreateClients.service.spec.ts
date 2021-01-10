@@ -1,6 +1,7 @@
 import AppError from '@shared/errors/AppErrors';
 
 import FakeClientsRepository from '../repositories/fakes/ClientsRepository.fake';
+import FakeAddressProvider from '../providers/AddressProvider/fakes/FakeAddressProvider';
 import CreateClientService from './CreateClients.service';
 
 const userDataMock = {
@@ -15,12 +16,17 @@ const userDataMock = {
 };
 
 let fakeClientsRepository: FakeClientsRepository;
+let fakeAddressProvider: FakeAddressProvider;
 let createClient: CreateClientService;
 
 describe('CreateClient', () => {
   beforeEach(() => {
     fakeClientsRepository = new FakeClientsRepository();
-    createClient = new CreateClientService(fakeClientsRepository);
+    fakeAddressProvider = new FakeAddressProvider();
+    createClient = new CreateClientService(
+      fakeClientsRepository,
+      fakeAddressProvider,
+    );
   });
 
   it('should be able to create a new client', async () => {

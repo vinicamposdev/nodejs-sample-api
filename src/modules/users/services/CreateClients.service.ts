@@ -6,6 +6,7 @@ import AppError from '@shared/errors/AppErrors';
 import IClientsRepository from '../repositories/IClientsRepository';
 import Client from '../infra/sequelize/models/client';
 import ICreateClientDTO from '../dtos/ICreateClientDTO';
+import IAddressProvider from '../providers/AddressProvider/models/IAddressProvider';
 
 /**
  * Creating Client Busines Rule
@@ -18,6 +19,9 @@ class CreateClientService {
   constructor(
     @inject('ClientsRepository')
     private clientsRepository: IClientsRepository,
+
+    @inject('AddressProvider')
+    private addressProvider: IAddressProvider,
   ) {}
 
   public async run(userData: ICreateClientDTO): Promise<Client> {
