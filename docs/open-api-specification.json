@@ -19,7 +19,7 @@
     }
   ],
   "paths": {
-    "/client": {
+    "/clients": {
       "get": {
         "tags": [
           "search"
@@ -153,11 +153,11 @@
       },
       "Address": {
         "required": [
-          "cep"
+          "postal_code"
         ],
         "type": "object",
         "properties": {
-          "cep": {
+          "postal_code": {
             "type": "string",
             "example": "12345678"
           },

@@ -2,6 +2,7 @@ import 'reflect-metadata';
 
 import express, { Request, Response, NextFunction } from 'express';
 import cors from 'cors';
+import { errors } from 'celebrate';
 
 import 'express-async-errors';
 
@@ -23,6 +24,8 @@ app.use((req, res, next) => {
 
 // Express routes and
 app.use(routes);
+
+app.use(errors());
 
 // Global Handling Application Error
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
