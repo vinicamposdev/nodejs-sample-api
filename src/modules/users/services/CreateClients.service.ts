@@ -20,12 +20,16 @@ class CreateClientService {
     private clientsRepository: IClientsRepository,
   ) {}
 
-  public async run({ email }: ICreateClientDTO): Promise<Client> {
-    const client = await this.clientsRepository.create({ email });
+  public async run(userData: ICreateClientDTO): Promise<Client> {
+    const checkClientExists = await this.clientsRepository.findByEmail(
+      userData.email,
+    );
 
-    if (!client || !client.id) {
-      throw new AppError('Client not found');
+    if (checkClientExists?.id) {
+      throw new AppError('Email address already used');
     }
+
+    const client = await this.clientsRepository.create(userData);
 
     return client;
   }

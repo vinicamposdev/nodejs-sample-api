@@ -31,6 +31,13 @@ Após isso rode o comando para instalar as dependencias necessárias ao projeto:
 ```shell
 npm install
 ```
+### Testes
+
+Para executar os testes dos services, execute o comando:
+```shell
+npm run test
+```
+
 ### Execução
 
 Para executar o servidor no ambiente de desenvolvimento, execute o comando:

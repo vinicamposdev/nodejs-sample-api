@@ -23,6 +23,10 @@ class ClientsRepository implements IClientRepository {
   public async create(clientContent: ICreateClientDTO): Promise<Client> {
     const client = new Client();
 
+    Object.assign(client, { id: uuid() }, clientContent);
+
+    this.clients.push(client);
+
     return client;
   }
 

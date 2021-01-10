@@ -14,10 +14,25 @@ module.exports = {
       cpf: {
         type: Sequelize.STRING
       },
-      address: {
+      email: {
         type: Sequelize.STRING
       },
-      email: {
+      postal_code: {
+        type: Sequelize.INTEGER
+      },
+      city: {
+        type: Sequelize.STRING
+      },
+      neightborhood: {
+        type: Sequelize.STRING
+      },
+      street: {
+        type: Sequelize.STRING
+      },
+      street_number: {
+        type: Sequelize.STRING
+      },
+      complement: {
         type: Sequelize.STRING
       },
       createdAt: {
