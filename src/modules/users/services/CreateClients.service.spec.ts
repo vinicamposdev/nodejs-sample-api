@@ -7,14 +7,16 @@ import CreateClientService from './CreateClients.service';
 jest.mock('../infra/sequelize/models/client.ts');
 
 const userDataMock = {
-  email: 'test',
-  cpf: 'test',
-  postal_code: 0,
-  street: 'test',
-  street_number: 'test',
-  neighborhood: 'test',
-  city: 'test',
-  complement: 'test',
+  email: 'emasisdls@email.com',
+  cpf: '1234234',
+  address: {
+    street_number: 'eiusmod magna aliquip do',
+    street: 'eiusmod magna aliquip do',
+    complement: 'dolor',
+    neighborhood: 'est',
+    city: 'nostrud amet culpa elit',
+    postal_code: 1111,
+  },
 };
 
 let fakeClientsRepository: FakeClientsRepository;

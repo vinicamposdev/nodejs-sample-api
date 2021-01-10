@@ -4,7 +4,6 @@ import { injectable, inject } from 'tsyringe';
 import AppError from '@shared/errors/AppErrors';
 
 import IClientsRepository from '../repositories/IClientsRepository';
-import Client from '../infra/sequelize/models/client';
 import ICreateClientDTO from '../dtos/ICreateClientDTO';
 import IAddressProvider from '../providers/AddressProvider/models/IAddressProvider';
 
@@ -24,7 +23,9 @@ class CreateClientService {
     private addressProvider: IAddressProvider,
   ) {}
 
-  public async run(userData: ICreateClientDTO): Promise<Client> {
+  public async run(
+    userData: ICreateClientDTO,
+  ): Promise<ICreateClientDTO & { id: string }> {
     const checkClientExists = await this.clientsRepository.findByEmail(
       userData.email,
     );
@@ -32,10 +33,47 @@ class CreateClientService {
     if (checkClientExists?.id) {
       throw new AppError('Email address already used');
     }
+    const address = await this.addressProvider.findAddress(
+      `${userData.address.postal_code}`,
+    );
 
-    const client = await this.clientsRepository.create(userData);
+    Object.assign(userData, {
+      city: address?.localidade ? address.localidade : userData.address.city,
+      neighborhood: address?.bairro
+        ? address.bairro
+        : userData.address.neighborhood,
+      street: address?.logradouro
+        ? address.logradouro
+        : userData.address.street,
+    });
 
-    return client;
+    const {
+      cpf,
+      id,
+      city,
+      complement,
+      email,
+      neighborhood,
+      postal_code,
+      street,
+      street_number,
+    } = await this.clientsRepository.create(userData);
+
+    const clientCreated: ICreateClientDTO & { id: string } = {
+      id,
+      cpf,
+      email,
+      address: {
+        city,
+        complement,
+        neighborhood,
+        postal_code: parseInt(postal_code, 10),
+        street,
+        street_number,
+      },
+    };
+
+    return clientCreated;
   }
 }
 
