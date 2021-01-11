@@ -79,15 +79,9 @@ npm run build
 npm run prod:server
 ```
 
-Para cadastrar cliente acesse o endpoint:
-```shell
-curl http://localhost:3333/clients
-```
+## Documentação
 
-Para consultar um clientes
-```shell
-curl -X POST http://localhost:3333/clients
-```
+Toda a especificação dos comportamentos do sistema e especificações open-api esto no arquivo docs ([link](https://github.com/vmo-campos/nodejs-sample-api/tree/development/docs)).
 
 ## Demonstração
 
