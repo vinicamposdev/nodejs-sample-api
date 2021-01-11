@@ -1,7 +1,7 @@
 # NodeJS Dependencies
 node_modules
 yarn.lock
-package.lock.json
+package-lock.json
 
 # Typescript Build
 dist

@@ -14,15 +14,33 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   Client.init({
-    id: DataTypes.STRING,
-    cpf: DataTypes.STRING,
-    email: DataTypes.STRING,
-    postal_code: DataTypes.INTEGER,
+    id: {
+      type: DataTypes.UUID,
+      allowNull: false,
+      primaryKey: true
+    },
+    cpf: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      unique: true
+    },
+    email: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      unique: true
+    },
+    postal_code: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    },
     city: DataTypes.STRING,
     neighborhood: DataTypes.STRING,
-    street: DataTypes.STRING,
+    street: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
     street_number: DataTypes.STRING,
-    complement: DataTypes.STRING
+    complement: DataTypes.STRING,
   }, {
     sequelize,
     modelName: 'Client',

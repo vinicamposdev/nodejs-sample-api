@@ -36,6 +36,7 @@
     "pg-hstore": "^2.3.3",
     "prettier": "^2.0.5",
     "sequelize-cli-typescript": "^3.2.0-c",
+    "sequelize-mock": "^0.10.2",
     "ts-jest": "^26.4.4",
     "ts-node-dev": "^1.0.0-pre.59",
     "tsconfig-paths": "^3.9.0",

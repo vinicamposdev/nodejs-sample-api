@@ -8,6 +8,8 @@ import {
   IsUUID,
   DataType,
   Default,
+  Unique,
+  AllowNull,
 } from 'sequelize-typescript';
 
 @Table
@@ -18,12 +20,17 @@ class Client extends Model {
   @Column
   id: string;
 
+  @AllowNull(false)
+  @Unique
   @Column
   cpf: string;
 
+  @AllowNull(false)
+  @Unique
   @Column
   email: string;
 
+  @AllowNull(false)
   @Column
   postal_code: string;
 
@@ -33,6 +40,7 @@ class Client extends Model {
   @Column
   neighborhood: string;
 
+  @AllowNull(false)
   @Column
   street: string;
 
@@ -43,10 +51,10 @@ class Client extends Model {
   complement: string;
 
   @CreatedAt
-  public readonly created_at: Date;
+  public readonly createdAt: Date;
 
   @UpdatedAt
-  public readonly updated_at: Date;
+  public readonly updatedAt: Date;
 }
 
 export default Client;

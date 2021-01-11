@@ -7,12 +7,6 @@ import IClientsRepository from '../repositories/IClientsRepository';
 import ICreateClientDTO from '../dtos/ICreateClientDTO';
 import IAddressProvider from '../providers/AddressProvider/models/IAddressProvider';
 
-/**
- * Creating Client Busines Rule
- * @param {string} email
- * @author Vinicius Campos
- */
-
 @injectable()
 class CreateClientService {
   constructor(
@@ -26,13 +20,18 @@ class CreateClientService {
   public async run(
     userData: ICreateClientDTO,
   ): Promise<ICreateClientDTO & { id: string }> {
-    const checkClientExists = await this.clientsRepository.findByEmail(
+    const checkClientExists = await this.clientsRepository.findByEmailCpf(
       userData.email,
+      userData.cpf,
     );
 
-    if (checkClientExists?.id) {
-      throw new AppError('Email address already used');
+    if (
+      checkClientExists &&
+      JSON.parse(JSON.stringify(checkClientExists?.toJSON())).id
+    ) {
+      throw new AppError('Email or cpf already used');
     }
+
     const address = await this.addressProvider.findAddress(
       `${userData.address.postal_code}`,
     );
@@ -45,8 +44,12 @@ class CreateClientService {
       street: address?.logradouro
         ? address.logradouro
         : userData.address.street,
+      postal_code: userData.address.postal_code,
+      street_number: userData.address.street_number,
+      complement: userData.address.complement,
     });
 
+    const client = await this.clientsRepository.create(userData);
     const {
       cpf,
       id,
@@ -57,7 +60,7 @@ class CreateClientService {
       postal_code,
       street,
       street_number,
-    } = await this.clientsRepository.create(userData);
+    } = JSON.parse(JSON.stringify(client?.toJSON()));
 
     const clientCreated: ICreateClientDTO & { id: string } = {
       id,
