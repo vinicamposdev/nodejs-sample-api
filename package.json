@@ -7,7 +7,7 @@
   "scripts": {
     "build": "babel src --extensions \".js,.ts\" --out-dir dist --copy-files",
     "dev:server": "ts-node-dev -r tsconfig-paths/register --inspect --transpile-only --ignore-watch node_modules src/shared/infra/http/server.ts",
-    "prod:server": "node dist/shared/infra/http/server.js",
+    "start": "node dist/shared/infra/http/server.js",
     "test": "jest"
   },
   "devDependencies": {
@@ -32,8 +32,6 @@
     "eslint-plugin-import": "^2.21.2",
     "eslint-plugin-prettier": "^3.1.4",
     "jest": "^26.6.3",
-    "pg": "^8.5.1",
-    "pg-hstore": "^2.3.3",
     "prettier": "^2.0.5",
     "sequelize-cli-typescript": "^3.2.0-c",
     "sequelize-mock": "^0.10.2",
@@ -45,6 +43,8 @@
     "typescript-eslint": "^0.0.1-alpha.0"
   },
   "dependencies": {
+    "pg": "^8.5.1",
+    "pg-hstore": "^2.3.3",
     "@babel/plugin-proposal-class-properties": "^7.10.4",
     "@babel/plugin-proposal-decorators": "^7.10.5",
     "@types/express-serve-static-core": "^4.17.13",

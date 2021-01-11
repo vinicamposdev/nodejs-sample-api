@@ -23,6 +23,21 @@
   <img alt="GitHub" src="https://img.shields.io/github/license/vmo-campos/nodejs-sample-api.svg">
 </p>
 
+## Tecnologias Usadas
+-  [Node.js](https://nodejs.org/)
+-  [Typescript](https://www.typescriptlang.org/) >> Apresenta um suporte a tipagem, além das funcionlidades básicas do Javascript mais recente. Dessa forma força um desenvolvimento mais proativo, diminuindo o risco de possíveis efeitos colaterais
+-  [Express](https://expressjs.com/) >> Uma framework simples com a parte de roteamente e middlewares bem potente, possibilitando criar todo tipo de Aplicação Rest, e liberdade para criar uma arquitetura personalizada.
+-  [nodemon](https://nodemon.io/) >> Salvar uma instancia do server e recarregála conforme as constantes mudanças do ambiente de desenvolvimento
+-  [Docker](https://www.docker.com/docker-community) >> Padronizar a tecnologia a ser utilizada e otimizar a utilização de recursos da mesma (na aplicação em questão foi usada apenas para rodar o banco de dados em ambiente de desenvolvimento)
+-  [Sequelize](http://docs.sequelizejs.com/) >> ORM perfeito para integração com bancos relacionais
+-  [PostgreSQL](https://www.postgresql.org/) >> Foi escolhido o PostGres pelo suporte da comunidade, por estar bem estabelicido no mercado e por ser open source
+-  [node-postgres](https://www.npmjs.com/package/pg) >> Driver de conexão do Postgres com o NodeJS
+-  [celebrate](https://www.npmjs.com/package/celebrate) >> É uma implementação direta da Sideway/Joi, a qual é uma das mais populares no mercado. A lib celebrate é interessante nesse caso, porque aprensenta uma integração perfeita com o Express, sendo middleware nas rotas
+-  [viacep](http://viacep.com.br/) >> Webservice para consultar Códigos de Endereçamento Postal. Apresenta alto desempenho e é gratuito.
+-  [DotEnv](https://www.npmjs.com/package/dotenv) >> criar variáveis de ambiente para guardar dados mais sensíveis ou que possam variar de ambiente mesmo
+-  [VS Code][vc] with [ESLint][vceslint] >> Facilitar na velocidade e qualidade de desenvolvimento. Aprensenta bastante suporte para projetos Typescript.
+
+
 ## :computer: Como rodar
 
 ### Instalação
@@ -41,7 +56,7 @@ npm install
 ```
 Para finalizar a configuração do Postgres é necessário colocar as credenciais no arquivo '.env' (existe um exemplo no arquivo .env.example)
 
-Na variável 'DATABASE_URI', com o formato padrão?
+Na variável 'DATABASE_URI', com o formato padrão:
 ```shell
 <driver>://<user>:<password>@<host>:<port>/<database_name>
 ```
@@ -51,7 +66,6 @@ Para executar os testes dos services, execute o comando:
 ```shell
 npm run test
 ```
-
 ### Execução
 
 Para executar o servidor no ambiente de desenvolvimento, execute o comando:
@@ -87,6 +101,21 @@ Deployed Heroku endpoint:
 ```shell
 https://nodejs-sample-api-vmo-campos.herokuapp.com/
 ```
+
+## Dificuldades encontradas
+A linguagem escolhida tem poucos recursos relacionados a integração com o ORM escolhido. Dessa forma foi necessário uma pesquisa em diversos forúns e documentações, sobre possíveis saídas para acoplar essas tecnologias.
+
+## Objetivos Alcançados
+Um código bem desacoplado, com o domínio bem definido e uso de Validadores, assim como a própria tipagem forte da linguagem de programação escolhida. É um código que tem uma facilidade de escalabilidade em questões de desenvolvimento de novas funcionalidades.
+### Futuras Melhorias
+
+Desacoplar o sequelize da estrutura do projeto, utilizando Desing Patterns mais avançados
+Desacoplar o validador de requisição celebrate do projeto, usando a mesma metodologia de Bridge Pattern com Test Double
+Melhorar a parte de migrations, atualmente existem dois models para realização da tarefas de banco, sendo que um é exclusivo para rodar migrations
+Melhorar o log da aplicação, adicionar algum serviço de monitoramento que melhore a observabilidade da aplicação
+Desacoplar melhor a Api de emails para que seja possível adicionar mais facilmente novos providers de cep
+Resolver o bug do MockJest que ficou quando se usa o toJSON() da entidade do Sequelize.
+Usar o docker-compose para padronizar a virtualização do ambiente e facilitar na instalação, execução e deploy da aplicação
 
 ## :memo: License
 This project is under the MIT license. See the [LICENSE](https://github.com/vmoc-campos/nodejs-sample-api/blob/master/LICENSE) for more information.
