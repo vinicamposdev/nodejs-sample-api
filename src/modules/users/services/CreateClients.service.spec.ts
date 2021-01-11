@@ -46,4 +46,34 @@ describe('CreateClient', () => {
       AppError,
     );
   });
+
+  it('should not be able to read an client without an cpf', async () => {
+    await createClient.run({
+      email: 'emasisdls@email.com',
+      cpf: '1234234',
+      address: {
+        street_number: 'eiusmod magna aliquip do',
+        street: 'eiusmod magna aliquip do',
+        complement: 'dolor',
+        neighborhood: 'est',
+        city: 'nostrud amet culpa elit',
+        postal_code: 1111,
+      },
+    });
+
+    await expect(
+      createClient.run({
+        email: 'emasisdlss@email.com',
+        cpf: '1234234',
+        address: {
+          street_number: 'eiusmod magna aliquip do',
+          street: 'eiusmod magna aliquip do',
+          complement: 'dolor',
+          neighborhood: 'est',
+          city: 'nostrud amet culpa elit',
+          postal_code: 1111,
+        },
+      }),
+    ).rejects.toBeInstanceOf(AppError);
+  });
 });
