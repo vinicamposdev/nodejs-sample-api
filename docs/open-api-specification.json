@@ -1,0 +1,180 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Sample Client Registration",
+    "description": "API for a simple client registration",
+    "contact": {
+      "email": "vinic.otus@gmail.com"
+    },
+    "license": {
+      "name": "Apache 2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+    },
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://virtserver.swaggerhub.com/vmo-campos/nodejs-sample-api/1.0.0",
+      "description": "SwaggerHub API Auto Mocking"
+    }
+  ],
+  "paths": {
+    "/clients": {
+      "get": {
+        "tags": [
+          "search"
+        ],
+        "summary": "search for clients",
+        "description": "Search a client by email",
+        "operationId": "searchclient",
+        "parameters": [
+          {
+            "name": "email",
+            "in": "query",
+            "description": "client email, must be an valid email and an email of an existent client",
+            "required": false,
+            "style": "form",
+            "explode": true,
+            "schema": {
+              "type": "string",
+              "format": "mail",
+              "example": "example@example.com"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "search results matching criteria",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/clientDTO"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "bad input parameter"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "create"
+        ],
+        "summary": "adds a client",
+        "description": "Create a client to the system",
+        "operationId": "addclient",
+        "requestBody": {
+          "description": "client item to add",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/clientDTO"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Client has been created successfuly",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/inline_response_200"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "invalid input, object invalid"
+          },
+          "409": {
+            "description": "an existing item already exists"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "clientDTO": {
+        "required": [
+          "address",
+          "cpf",
+          "email",
+          "id"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "example": "139040aa-dbb3-480c-823d-e90f048ef275"
+          },
+          "cpf": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "email": {
+            "type": "string",
+            "format": "email",
+            "example": "example@example.com"
+          },
+          "address": {
+            "$ref": "#/components/schemas/Address"
+          }
+        }
+      },
+      "Address": {
+        "required": [
+          "postal_code"
+        ],
+        "type": "object",
+        "properties": {
+          "postal_code": {
+            "type": "string",
+            "example": "12345678"
+          },
+          "street": {
+            "type": "string",
+            "format": "url",
+            "example": "Street Example"
+          },
+          "number": {
+            "type": "string",
+            "format": "url",
+            "example": "1A"
+          },
+          "complement": {
+            "type": "string",
+            "format": "url",
+            "example": "Apartament 1A"
+          },
+          "neighborhood": {
+            "type": "string",
+            "example": "Neighborhood Example"
+          },
+          "city": {
+            "type": "string",
+            "example": "Example City"
+          },
+          "uf": {
+            "type": "string",
+            "example": "AA"
+          }
+        }
+      },
+      "inline_response_200": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "example": "139040aa-dbb3-480c-823d-e90f048ef275"
+          }
+        }
+      }
+    }
+  }
+}
